@@ -1,84 +1,79 @@
 :root {
-  --fondo: #1B1F23;
-  --panel: #24292E;
-  --texto: #E6EDF3;
-  --texto-sec: #9DA7B1;
-  --primario: #FF6B35;
-  --secundario: #4CB944;
-  --alerta: #D7263D;
-  --borde: #30363D;
+  --negro: #000;
+  --gris: #444;
+  --blanco: #fff;
+  --rojo: #e53935;
+  --azul: #1e88e5;
 }
 
-body {
+html, body {
   margin: 0;
   font-family: Arial, sans-serif;
-  background: var(--fondo);
-  color: var(--texto);
+  background-color: var(--negro);
+  color: var(--blanco);
 }
 
 .topbar {
-  background: var(--panel);
-  padding: 10px;
+  background: var(--gris);
+  padding: 10px 12px;
   display: flex;
   justify-content: space-between;
-  border-bottom: 1px solid var(--borde);
+  align-items: center;
 }
 
-h1 { margin: 0; color: var(--primario); font-size: 18px; }
+h1 { margin: 0; color: var(--azul); font-size: 18px; }
+
 .controls { display: flex; gap: 8px; }
-.controls input {
-  padding: 6px;
-  border: 1px solid var(--borde);
-  border-radius: 4px;
-  background: var(--texto);
-  color: var(--fondo);
-}
 
-.wrap { max-width: 800px; margin: auto; padding: 10px; display: grid; gap: 16px; }
-.card {
-  background: var(--panel);
-  border: 1px solid var(--borde);
-  border-radius: 8px;
-  padding: 12px;
-}
-
-.btn {
-  background: var(--primario);
-  color: var(--texto);
-  border: 1px solid var(--borde);
-  padding: 6px 10px;
-  border-radius: 6px;
+button {
+  background-color: var(--azul);
+  color: var(--blanco);
+  border: 1px solid var(--blanco);
+  padding: 6px 12px;
   cursor: pointer;
 }
-.btn:hover { background: var(--secundario); }
-.btn.ghost { background: transparent; color: var(--texto-sec); }
+button:hover { background-color: var(--rojo); }
 
+.wrap { padding: 12px; max-width: 800px; margin: auto; }
+
+.form-container {
+  background: var(--gris);
+  padding: 12px;
+  border-radius: 6px;
+  margin-bottom: 20px;
+}
 .hidden { display: none; }
 
 label {
   display: block;
-  margin-top: 8px;
+  margin-top: 10px;
   font-weight: bold;
-  color: var(--texto-sec);
 }
-input[type="text"], input[type="date"], input[type="number"] {
+input[type="text"], input[type="date"], input[type="number"], input[type="file"] {
   width: 100%;
-  padding: 6px;
-  border: 1px solid var(--borde);
-  border-radius: 4px;
-  background: var(--texto);
-  color: var(--fondo);
+  box-sizing: border-box;
+  background-color: var(--blanco);
+  color: var(--negro);
+  border: 1px solid var(--gris);
+  padding: 4px 6px;
 }
 
-.form-actions { margin-top: 10px; display: flex; gap: 8px; }
+.form-actions {
+  margin-top: 12px;
+  display: flex;
+  gap: 8px;
+}
 
-.record-summary {
-  border: 1px solid var(--borde);
-  border-radius: 6px;
+.record-card {
+  border: 1px solid var(--gris);
   padding: 10px;
-  background: var(--panel);
+  margin-bottom: 10px;
+  background: var(--negro);
 }
-.record-summary h3 { margin: 0 0 6px; color: var(--primario); }
-.record-summary p { margin: 2px 0; color: var(--texto-sec); }
-
-.empty { text-align: center; color: var(--texto-sec); }
+.record-card h3 {
+  margin: 0 0 8px;
+  color: var(--azul);
+}
+.record-card p {
+  margin: 2px 0;
+}
