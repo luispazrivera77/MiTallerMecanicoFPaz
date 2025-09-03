@@ -16,12 +16,24 @@
   </header>
 
   <main class="wrap">
-    <!-- Formulario -->
+    <!-- Formulario (vertical) -->
     <section id="formContainer" class="card hidden">
       <h2 id="formTitle">Nuevo registro</h2>
-      <form id="recordForm">
-        <input type="hidden" id="recordIndex" />
+      <form id="recordForm" novalidate>
+        <input type="hidden" id="recordId" />
         <div id="formFields"></div>
+
+        <div class="form-section">
+          <h3>Adjuntos</h3>
+          <label>Foto (opcional)</label>
+          <input id="photoInput" type="file" accept="image/*" capture="environment" />
+          <div id="photoPreview" class="preview"></div>
+
+          <label>Documento PDF (opcional)</label>
+          <input id="pdfInput" type="file" accept="application/pdf" />
+          <div id="pdfPreview" class="preview"></div>
+        </div>
+
         <div class="form-actions">
           <button type="submit" class="btn primary">Guardar</button>
           <button type="button" id="cancelBtn" class="btn ghost">Cancelar</button>
@@ -29,24 +41,29 @@
       </form>
     </section>
 
-    <!-- Lista de registros -->
+    <!-- Listado -->
     <section id="recordsList" class="card">
       <div class="list-head">
         <h2>Registros</h2>
         <span id="countBadge" class="badge">0</span>
       </div>
       <div id="records" class="records"></div>
-      <div id="emptyState" class="empty">Sin registros aún.</div>
+      <div id="emptyState" class="empty hidden">Sin registros aún.</div>
     </section>
   </main>
 
-  <template id="recordSummaryTpl">
-    <article class="record-summary">
-      <h3 class="title"></h3>
-      <p><strong>Fecha ingreso:</strong> <span class="fecha"></span></p>
-      <p><strong>Kilometraje:</strong> <span class="km"></span></p>
-      <p><strong>Presupuesto total:</strong> <span class="presupuesto"></span></p>
-      <button class="btn ghost view">Ver completo</button>
+  <template id="recordCardTpl">
+    <article class="record-card">
+      <div class="record-head">
+        <h3 class="title"></h3>
+        <div class="actions">
+          <a class="btn thumb photo hidden" target="_blank" rel="noopener">Foto</a>
+          <a class="btn thumb pdf hidden" target="_blank" rel="noopener">PDF</a>
+          <button class="btn ghost edit">Editar</button>
+          <button class="btn danger delete">Eliminar</button>
+        </div>
+      </div>
+      <div class="grid-2 details"></div>
     </article>
   </template>
 
