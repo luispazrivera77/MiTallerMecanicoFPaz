@@ -1,31 +1,39 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Mi Taller Mecánico - F. Paz</title>
-  <link rel="stylesheet" href="styles.css">
+  <link rel="stylesheet" href="styles.css" />
 </head>
 <body>
-  <header>
+  <header class="topbar">
     <h1>Mi Taller Mecánico - F. Paz</h1>
     <div class="controls">
-      <button id="addFieldBtn">Agregar Campo</button>
-      <input type="text" id="searchInput" placeholder="Buscar...">
+      <button id="addFieldBtn">Agregar campo</button>
+      <input id="searchInput" type="text" placeholder="Buscar en todas las filas…" />
     </div>
   </header>
 
-  <main>
+  <main class="wrap">
+    <p class="hint">
+      Doble clic en un encabezado para renombrar el campo. Click en ✕ para eliminarlo.
+    </p>
+
     <table id="dataTable">
       <thead>
         <tr id="tableHeader">
-          <th>#</th>
+          <th class="narrow">#</th>
+          <!-- Campos dinámicos aquí -->
+          <th>Adjuntos</th>
+          <th class="narrow">Acciones</th>
         </tr>
       </thead>
       <tbody id="tableBody"></tbody>
     </table>
+
     <div class="actions">
-      <button id="addRowBtn">Agregar Fila</button>
+      <button id="addRowBtn">Agregar fila</button>
     </div>
   </main>
 
