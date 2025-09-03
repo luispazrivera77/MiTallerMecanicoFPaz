@@ -25,10 +25,11 @@ body {
   display: flex;
   align-items: center;
   justify-content: space-between;
+  position: sticky; top: 0; z-index: 5;
   border-bottom: 1px solid var(--borde);
 }
 
-h1 { margin: 0; color: var(--primario); font-size: 18px; }
+h1 { margin: 0; color: var(--primario); font-size: 18px; letter-spacing: .3px; }
 .controls { display: flex; gap: 8px; }
 .controls input {
   padding: 8px 10px; border: 1px solid var(--borde);
@@ -60,6 +61,7 @@ h2 { margin: 0 0 10px; font-weight: 600; }
 .btn.ghost { background: transparent; border-color: var(--borde); color: var(--texto-sec); }
 .btn.primary { background: var(--primario); }
 .btn.danger { background: var(--alerta); border-color: var(--alerta); }
+.btn.thumb { padding: 6px 10px; border-color: var(--borde); background: var(--panel); }
 
 .hidden { display: none !important; }
 
@@ -92,10 +94,29 @@ input[type="text"], input[type="date"], input[type="number"], input[type="file"]
 .records { display: grid; gap: 12px; }
 .empty { text-align: center; color: var(--texto-sec); padding: 10px; }
 
-.record-summary {
+.record-card {
   border: 1px solid var(--borde);
   background: var(--panel);
   border-radius: 10px; padding: 10px;
 }
-.record-summary h3 { margin: 0 0 6px; color: var(--primario); }
-.record-summary p { margin: 2px 0; color: var(--texto-sec); }
+.record-head { display: flex; align-items: center; justify-content: space-between; gap: 12px; }
+.record-head .title { margin: 0; color: var(--primario); font-size: 16px; }
+.record-head .actions { display: flex; gap: 8px; flex-wrap: wrap; }
+
+.grid-2 {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 8px;
+  margin-top: 10px;
+}
+@media (max-width: 720px) {
+  .grid-2 { grid-template-columns: 1fr; }
+}
+
+.detail {
+  border: 1px solid var(--borde);
+  border-radius: 8px;
+  padding: 8px;
+  background: var(--fondo);
+}
+.detail .k { color: var(--secundario); display: block; font-size: 12px; margin-bottom: 4
