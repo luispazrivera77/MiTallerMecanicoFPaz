@@ -6,7 +6,6 @@ const tableHeader = document.getElementById('tableHeader');
 const tableBody = document.getElementById('tableBody');
 const addRowBtn = document.getElementById('addRowBtn');
 const searchInput = document.getElementById('searchInput');
-const exportBtn = document.getElementById('exportBtn');
 
 renderHeader();
 loadTable();
@@ -47,7 +46,6 @@ addRowBtn.addEventListener('click', () => {
     fields.map(() => `<td><input type="text" maxlength="100"></td>`).join('') +
     `<td><input type="file" accept="image/*,application/pdf"></td>` +
     `<td>
-      <button class="editBtn">Editar</button>
       <button class="deleteBtn">Eliminar</button>
     </td>`;
   tableBody.appendChild(row);
@@ -58,7 +56,8 @@ searchInput.addEventListener('input', () => {
   const term = searchInput.value.toLowerCase();
   Array.from(tableBody.rows).forEach(row => {
     const match = Array.from(row.cells).some(cell =>
-      cell.textContent.toLowerCase().includes(term)
+      cell.textContent.toLowerCase().includes(term) ||
+      cell.querySelector('input')?.value.toLowerCase().includes(term)
     );
     row.style.display = match ? '' : 'none';
   });
@@ -98,27 +97,8 @@ function loadTable() {
       rowData.map(val => `<td><input type="text" maxlength="100" value="${val}"></td>`).join('') +
       `<td><input type="file" accept="image/*,application/pdf"></td>` +
       `<td>
-        <button class="editBtn">Editar</button>
         <button class="deleteBtn">Eliminar</button>
       </td>`;
     tableBody.appendChild(row);
   });
 }
-
-exportBtn.addEventListener('click', () => {
-  let csv = ['#,' + fields.join(',') + ',Adjuntos'];
-  Array.from(tableBody.rows).forEach(row => {
-    const values = [];
-    for (let i = 0; i <= fields.length; i++) {
-      values.push(row.cells[i].querySelector('input')?.value || row.cells[i].textContent);
-    }
-    csv.push(values.join(','));
-  });
-  const blob = new Blob([csv.join('\n')], { type: 'text/csv' });
-  const url = URL.createObjectURL(blob);
-  const a = document.createElement('a');
-  a.href = url;
-  a.download = 'mi_taller_mecanico.csv';
-  a.click();
-  URL.revokeObjectURL(url);
-});
