@@ -9,84 +9,50 @@
 html, body {
   margin: 0;
   font-family: Arial, sans-serif;
-  background-color: var(--negro) !important;
-  color: var(--blanco) !important;
+  background-color: var(--negro);
+  color: var(--blanco);
 }
 
 .topbar {
-  background: var(--gris) !important;
+  background: var(--gris);
   padding: 10px 12px;
   display: flex;
   justify-content: space-between;
   align-items: center;
-  position: sticky;
-  top: 0;
 }
 
-h1 { margin: 0; color: var(--azul) !important; font-size: 18px; letter-spacing: .3px; }
+h1 { margin: 0; color: var(--azul); font-size: 18px; }
 
-.controls {
-  display: flex; gap: 8px; align-items: center;
-}
+.controls { display: flex; gap: 8px; }
 
 button {
-  background-color: var(--azul) !important;
-  color: var(--blanco) !important;
-  border: 1px solid var(--blanco) !important;
+  background-color: var(--azul);
+  color: var(--blanco);
+  border: 1px solid var(--blanco);
   padding: 6px 12px;
   cursor: pointer;
 }
-button:hover { background-color: var(--rojo) !important; }
+button:hover { background-color: var(--rojo); }
 
-.wrap { padding: 12px; max-width: 1200px; margin: 0 auto; }
-
-.hint { color: #ddd; opacity: 0.9; margin: 8px 0 12px; font-size: 13px; }
+.wrap { padding: 12px; max-width: 100%; }
 
 table {
   width: 100%;
   border-collapse: collapse;
-  margin-top: 6px;
 }
 th, td {
-  border: 1px solid var(--gris) !important;
+  border: 1px solid var(--gris);
   padding: 6px;
   text-align: center;
-  background-color: var(--negro) !important;
-  color: var(--blanco) !important;
-  vertical-align: middle;
+  background-color: var(--negro);
+  color: var(--blanco);
 }
-th.narrow, td.narrow { width: 60px; }
-
-thead th .field-head {
-  display: inline-flex; align-items: center; gap: 6px;
-}
-thead th .delField {
-  background: transparent !important;
-  border: 1px solid var(--rojo) !important;
-  color: var(--rojo) !important;
-  padding: 0 6px; cursor: pointer; border-radius: 4px;
-}
-thead th .delField:hover {
-  background: var(--rojo) !important; color: var(--blanco) !important;
-}
-
-input[type="text"], input[type="date"], input[type="file"] {
+input[type="text"], input[type="date"], input[type="number"], input[type="file"] {
   width: 100%;
   box-sizing: border-box;
-  background-color: var(--blanco) !important;
-  color: var(--negro) !important;
-  border: 1px solid var(--gris) !important;
+  background-color: var(--blanco);
+  color: var(--negro);
+  border: 1px solid var(--gris);
   padding: 4px 6px;
 }
-
-.attachments {
-  display: flex; gap: 6px; justify-content: center; align-items: center; flex-wrap: wrap;
-}
-.fileLabel {
-  display: inline-flex; align-items: center; gap: 6px;
-  background: #0f0f0f; border: 1px solid var(--gris); color: var(--blanco);
-  padding: 4px 6px; border-radius: 4px;
-}
-.fileLabel input[type="file"] { width: auto; }
-
 .actions { margin-top: 10px; text-align: center; }
