@@ -34,4 +34,6 @@ const fields = [
   { key: "notasInternas", label: "Notas internas", type: "text" }
 ];
 
-let records =
+let records = JSON.parse(localStorage.getItem("tallerRecords") || "[]");
+
+const addRecordBtn = document.getElementBy
