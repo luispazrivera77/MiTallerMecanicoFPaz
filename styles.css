@@ -6,15 +6,15 @@
   --azul: #1e88e5;
 }
 
-body {
-  font-family: Arial, sans-serif;
-  background-color: var(--negro);
-  color: var(--blanco);
+html, body {
+  background-color: var(--negro) !important;
+  color: var(--blanco) !important;
   margin: 0;
+  font-family: Arial, sans-serif;
 }
 
 header {
-  background: var(--gris);
+  background: var(--gris) !important;
   padding: 10px;
   display: flex;
   justify-content: space-between;
@@ -23,19 +23,19 @@ header {
 
 h1 {
   margin: 0;
-  color: var(--azul);
+  color: var(--azul) !important;
 }
 
 button {
-  background: var(--azul);
-  color: var(--blanco);
-  border: 1px solid var(--blanco);
+  background-color: var(--azul) !important;
+  color: var(--blanco) !important;
+  border: 1px solid var(--blanco) !important;
   padding: 6px 12px;
   cursor: pointer;
 }
 
 button:hover {
-  background: var(--rojo);
+  background-color: var(--rojo) !important;
 }
 
 table {
@@ -45,19 +45,19 @@ table {
 }
 
 th, td {
-  border: 1px solid var(--gris);
+  border: 1px solid var(--gris) !important;
   padding: 5px;
   text-align: center;
-  background-color: var(--negro);
-  color: var(--blanco);
+  background-color: var(--negro) !important;
+  color: var(--blanco) !important;
 }
 
-input[type="text"], input[type="date"], input[type="file"] {
+input[type="text"], input[type="date"], input[type="file"], select, textarea {
   width: 100%;
   box-sizing: border-box;
-  background-color: var(--blanco);
-  color: var(--negro);
-  border: 1px solid var(--gris);
+  background-color: var(--blanco) !important;
+  color: var(--negro) !important;
+  border: 1px solid var(--gris) !important;
 }
 
 .actions {
