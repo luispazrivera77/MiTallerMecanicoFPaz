@@ -29,7 +29,7 @@ h1 {
 button {
   background: var(--azul);
   color: var(--blanco);
-  border: none;
+  border: 1px solid var(--blanco);
   padding: 6px 12px;
   cursor: pointer;
 }
@@ -48,11 +48,16 @@ th, td {
   border: 1px solid var(--gris);
   padding: 5px;
   text-align: center;
+  background-color: var(--negro);
+  color: var(--blanco);
 }
 
 input[type="text"], input[type="date"], input[type="file"] {
   width: 100%;
   box-sizing: border-box;
+  background-color: var(--blanco);
+  color: var(--negro);
+  border: 1px solid var(--gris);
 }
 
 .actions {
