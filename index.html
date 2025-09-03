@@ -16,6 +16,7 @@
   </header>
 
   <main class="wrap">
+    <!-- Formulario -->
     <section id="formContainer" class="card hidden">
       <h2 id="formTitle">Nuevo registro</h2>
       <form id="recordForm" novalidate>
@@ -40,6 +41,7 @@
       </form>
     </section>
 
+    <!-- Lista de registros -->
     <section id="recordsList" class="card">
       <div class="list-head">
         <h2>Registros</h2>
@@ -50,18 +52,13 @@
     </section>
   </main>
 
-  <template id="recordCardTpl">
-    <article class="record-card">
-      <div class="record-head">
-        <h3 class="title"></h3>
-        <div class="actions">
-          <a class="btn thumb photo hidden" target="_blank" rel="noopener">Foto</a>
-          <a class="btn thumb pdf hidden" target="_blank" rel="noopener">PDF</a>
-          <button class="btn ghost edit">Editar</button>
-          <button class="btn danger delete">Eliminar</button>
-        </div>
-      </div>
-      <div class="grid-2 details"></div>
+  <template id="recordSummaryTpl">
+    <article class="record-summary">
+      <h3 class="title"></h3>
+      <p><strong>Fecha ingreso:</strong> <span class="fecha"></span></p>
+      <p><strong>Kilometraje:</strong> <span class="km"></span></p>
+      <p><strong>Presupuesto total:</strong> <span class="presupuesto"></span></p>
+      <button class="btn ghost view">Ver completo</button>
     </article>
   </template>
 
