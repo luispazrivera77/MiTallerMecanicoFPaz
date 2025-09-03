@@ -1,93 +1,121 @@
 // Campos preconfigurados
 const fields = [
-  // Datos cliente y vehículo
-  "Nombre cliente", "RUT", "Teléfono", "Correo", "Dirección",
-  "Fecha ingreso", "Marca", "Modelo", "Año", "Patente",
-  "N° chasis/VIN", "Kilometraje", "Color", "Combustible", "Transmisión",
+  // Cliente y vehículo
+  { name: "Nombre cliente", type: "text" },
+  { name: "RUT", type: "text" },
+  { name: "Teléfono", type: "text" },
+  { name: "Correo", type: "text" },
+  { name: "Dirección", type: "text" },
+  { name: "Fecha ingreso", type: "date" },
+  { name: "Marca", type: "text" },
+  { name: "Modelo", type: "text" },
+  { name: "Año", type: "number" },
+  { name: "Patente", type: "text" },
+  { name: "N° chasis/VIN", type: "text" },
+  { name: "Kilometraje", type: "number" },
+  { name: "Color", type: "text" },
+  { name: "Combustible", type: "text" },
+  { name: "Transmisión", type: "text" },
   // Trabajo y repuestos
-  "Descripción falla", "Diagnóstico", "Trabajos a realizar",
-  "Repuestos", "Costo repuestos", "Costo mano de obra",
-  "Observaciones", "Fecha entrega", "Estado trabajo",
+  { name: "Descripción falla", type: "text" },
+  { name: "Diagnóstico", type: "text" },
+  { name: "Trabajos a realizar", type: "text" },
+  { name: "Repuestos", type: "text" },
+  { name: "Costo repuestos", type: "number" },
+  { name: "Costo mano de obra", type: "number" },
+  { name: "Observaciones", type: "text" },
+  { name: "Fecha entrega", type: "date" },
+  { name: "Estado trabajo", type: "text" },
   // Gestión administrativa
-  "N° OT", "Presupuesto total", "Abono", "Saldo pendiente",
-  "Forma de pago", "Fecha pago", "Garantía", "Historial servicios", "Notas internas"
+  { name: "N° OT", type: "text" },
+  { name: "Presupuesto total", type: "number" },
+  { name: "Abono", type: "number" },
+  { name: "Saldo pendiente", type: "number" },
+  { name: "Forma de pago", type: "text" },
+  { name: "Fecha pago", type: "date" },
+  { name: "Garantía", type: "text" },
+  { name: "Historial servicios", type: "text" },
+  { name: "Notas internas", type: "text" }
 ];
 
-const tableHeader = document.getElementById('tableHeader');
-const tableBody = document.getElementById('tableBody');
-const addRowBtn = document.getElementById('addRowBtn');
+const addRecordBtn = document.getElementById('addRecordBtn');
+const formContainer = document.getElementById('formContainer');
+const formFields = document.getElementById('formFields');
+const recordForm = document.getElementById('recordForm');
+const cancelBtn = document.getElementById('cancelBtn');
+const recordsDiv = document.getElementById('records');
 const searchInput = document.getElementById('searchInput');
 
-// Render encabezado
-function renderHeader() {
-  tableHeader.innerHTML = '<th>#</th>';
+let records = JSON.parse(localStorage.getItem('tallerRecords') || '[]');
+let editIndex = null;
+
+function renderForm() {
+  formFields.innerHTML = '';
   fields.forEach(f => {
-    const th = document.createElement('th');
-    th.textContent = f;
-    tableHeader.appendChild(th);
-  });
-  const thAdj = document.createElement('th');
-  thAdj.textContent = 'Adjuntos';
-  tableHeader.appendChild(thAdj);
-  const thAcc = document.createElement('th');
-  thAcc.textContent = 'Acciones';
-  tableHeader.appendChild(thAcc);
-}
-
-// Render tabla
-function renderTable() {
-  tableBody.innerHTML = '';
-  const data = JSON.parse(localStorage.getItem('tallerData') || '[]');
-  data.forEach((row, idx) => {
-    const tr = document.createElement('tr');
-    tr.innerHTML = `<td>${idx + 1}</td>` +
-      fields.map((f, i) => `<td><input type="text" value="${row[i] || ''}"></td>`).join('') +
-      `<td><input type="file" accept="image/*,application/pdf"></td>` +
-      `<td><button class="deleteBtn">Eliminar</button></td>`;
-    tableBody.appendChild(tr);
+    const label = document.createElement('label');
+    label.textContent = f.name;
+    const input = document.createElement('input');
+    input.type = f.type;
+    input.name = f.name;
+    formFields.appendChild(label);
+    formFields.appendChild(input);
   });
 }
 
-// Guardar datos
-function saveTable() {
-  const rows = [];
-  Array.from(tableBody.rows).forEach(tr => {
-    const inputs = tr.querySelectorAll('td input[type="text"]');
-    const values = Array.from(inputs).map(inp => inp.value);
-    rows.push(values);
+function renderRecords() {
+  recordsDiv.innerHTML = '';
+  records.forEach((rec, idx) => {
+    const card = document.createElement('div');
+    card.className = 'record-card';
+    card.innerHTML = `<h3>Registro #${idx + 1}</h3>` +
+      fields.map(f => `<p><strong>${f.name}:</strong> ${rec[f.name] || ''}</p>`).join('') +
+      `<button onclick="editRecord(${idx})">Editar</button>
+       <button onclick="deleteRecord(${idx})">Eliminar</button>`;
+    recordsDiv.appendChild(card);
   });
-  localStorage.setItem('tallerData', JSON.stringify(rows));
 }
 
-// Eventos
-addRowBtn.addEventListener('click', () => {
-  const tr = document.createElement('tr');
-  tr.innerHTML = `<td>${tableBody.rows.length + 1}</td>` +
-    fields.map(() => `<td><input type="text"></td>`).join('') +
-    `<td><input type="file" accept="image/*,application/pdf"></td>` +
-    `<td><button class="deleteBtn">Eliminar</button></td>`;
-  tableBody.appendChild(tr);
-  saveTable();
+function saveRecords() {
+  localStorage.setItem('tallerRecords', JSON.stringify(records));
+}
+
+addRecordBtn.addEventListener('click', () => {
+  editIndex = null;
+  recordForm.reset();
+  formContainer.classList.remove('hidden');
 });
 
-tableBody.addEventListener('input', saveTable);
+cancelBtn.addEventListener('click', () => {
+  formContainer.classList.add('hidden');
+});
 
-tableBody.addEventListener('click', e => {
-  if (e.target.classList.contains('deleteBtn')) {
-    e.target.closest('tr').remove();
-    saveTable();
-    renderTable();
+recordForm.addEventListener('submit', e => {
+  e.preventDefault();
+  const formData = new FormData(recordForm);
+  const record = {};
+  fields.forEach(f => {
+    record[f.name] = formData.get(f.name);
+  });
+  if (editIndex !== null) {
+    records[editIndex] = record;
+  } else {
+    records.push(record);
   }
+  saveRecords();
+  renderRecords();
+  formContainer.classList.add('hidden');
 });
 
 searchInput.addEventListener('input', () => {
   const term = searchInput.value.toLowerCase();
-  Array.from(tableBody.rows).forEach(row => {
-    const match = row.innerText.toLowerCase().includes(term);
-    row.style.display = match ? '' : 'none';
+  Array.from(recordsDiv.children).forEach(card => {
+    card.style.display = card.innerText.toLowerCase().includes(term) ? '' : 'none';
   });
 });
 
-// Inicializar
-renderHeader();
-renderTable();
+window.editRecord = function(idx) {
+  editIndex = idx;
+  renderForm();
+  const rec = records[idx];
+  fields.forEach(f => {
+    recordForm.querySelector(`[name="${f.name}"]`).value
