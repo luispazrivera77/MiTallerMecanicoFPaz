@@ -10,23 +10,31 @@
   <header class="topbar">
     <h1>Mi Taller Mecánico - F. Paz</h1>
     <div class="controls">
-      <input id="searchInput" type="text" placeholder="Buscar..." />
+      <input id="searchInput" type="text" placeholder="Buscar registros..." />
+      <button id="addRecordBtn">Nuevo registro</button>
     </div>
   </header>
 
   <main class="wrap">
-    <table id="dataTable">
-      <thead>
-        <tr id="tableHeader">
-          <th>#</th>
-          <!-- Encabezados preconfigurados -->
-        </tr>
-      </thead>
-      <tbody id="tableBody"></tbody>
-    </table>
+    <div id="formContainer" class="form-container hidden">
+      <h2 id="formTitle">Nuevo registro</h2>
+      <form id="recordForm">
+        <!-- Campos generados dinámicamente -->
+        <div id="formFields"></div>
+        <label>Adjuntar foto</label>
+        <input type="file" accept="image/*" capture="environment">
+        <label>Adjuntar PDF</label>
+        <input type="file" accept="application/pdf">
+        <div class="form-actions">
+          <button type="submit">Guardar</button>
+          <button type="button" id="cancelBtn">Cancelar</button>
+        </div>
+      </form>
+    </div>
 
-    <div class="actions">
-      <button id="addRowBtn">Agregar fila</button>
+    <div id="recordsList">
+      <h2>Registros</h2>
+      <div id="records"></div>
     </div>
   </main>
 
