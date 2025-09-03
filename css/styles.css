@@ -34,18 +34,20 @@ button {
 }
 button:hover { background-color: var(--rojo); }
 
-.wrap { padding: 12px; max-width: 100%; }
+.wrap { padding: 12px; max-width: 800px; margin: auto; }
 
-table {
-  width: 100%;
-  border-collapse: collapse;
+.form-container {
+  background: var(--gris);
+  padding: 12px;
+  border-radius: 6px;
+  margin-bottom: 20px;
 }
-th, td {
-  border: 1px solid var(--gris);
-  padding: 6px;
-  text-align: center;
-  background-color: var(--negro);
-  color: var(--blanco);
+.hidden { display: none; }
+
+label {
+  display: block;
+  margin-top: 10px;
+  font-weight: bold;
 }
 input[type="text"], input[type="date"], input[type="number"], input[type="file"] {
   width: 100%;
@@ -55,4 +57,23 @@ input[type="text"], input[type="date"], input[type="number"], input[type="file"]
   border: 1px solid var(--gris);
   padding: 4px 6px;
 }
-.actions { margin-top: 10px; text-align: center; }
+
+.form-actions {
+  margin-top: 12px;
+  display: flex;
+  gap: 8px;
+}
+
+.record-card {
+  border: 1px solid var(--gris);
+  padding: 10px;
+  margin-bottom: 10px;
+  background: var(--negro);
+}
+.record-card h3 {
+  margin: 0 0 8px;
+  color: var(--azul);
+}
+.record-card p {
+  margin: 2px 0;
+}
