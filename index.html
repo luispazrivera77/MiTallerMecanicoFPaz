@@ -10,23 +10,16 @@
   <header class="topbar">
     <h1>Mi Taller Mecánico - F. Paz</h1>
     <div class="controls">
-      <button id="addFieldBtn">Agregar campo</button>
-      <input id="searchInput" type="text" placeholder="Buscar en todas las filas…" />
+      <input id="searchInput" type="text" placeholder="Buscar..." />
     </div>
   </header>
 
   <main class="wrap">
-    <p class="hint">
-      Doble clic en un encabezado para renombrar el campo. Click en ✕ para eliminarlo.
-    </p>
-
     <table id="dataTable">
       <thead>
         <tr id="tableHeader">
-          <th class="narrow">#</th>
-          <!-- Campos dinámicos aquí -->
-          <th>Adjuntos</th>
-          <th class="narrow">Acciones</th>
+          <th>#</th>
+          <!-- Encabezados preconfigurados -->
         </tr>
       </thead>
       <tbody id="tableBody"></tbody>
